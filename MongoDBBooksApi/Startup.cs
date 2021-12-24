@@ -13,6 +13,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using MongoDBBooksApi.Models;
+using MongoDBBooksApi.Services;
 
 namespace MongoDBBooksApi
 {
@@ -33,6 +34,8 @@ namespace MongoDBBooksApi
 
             services.AddSingleton<IBookstoreDatabaseSettings>(sp =>
                 sp.GetRequiredService<IOptions<BookstoreDatabaseSettings>>().Value);
+            
+            services.AddSingleton<BookService>();
             
             services.AddControllers();
             services.AddSwaggerGen(c =>
